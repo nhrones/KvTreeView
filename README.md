@@ -3,7 +3,7 @@ This is an example application for examining DenoKv data in a TreeView.
 This app uses a simple RPC service to fetch and prep all DenoKv-db-rows    
 for viewing in a DOM Treeview.   
 
-This simple client demonstrates a minimal transaction-based SSE-KV-RPC service.
+This simple client demonstrates a minimal transaction-based SSE-KV-RPC service.   
 See: _./dbService/dbtransactions.ts/_ (server-side) and _./example/dbClient.js/_ (client-side)
 
 This example supplies a test database located in _**/dbService/data/db.db**_    
