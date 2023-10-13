@@ -8,7 +8,7 @@
          "problemMatcher": [
             "$deno"
          ],
-         "label": "deno: run"
+         "label": "RUN"
       }
    ]
 }
