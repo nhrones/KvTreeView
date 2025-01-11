@@ -1,4 +1,4 @@
-const DBPath = './db.db'
+import { DBPath } from "../context.ts"
 
 /** load test data set */
 export async function load() {
@@ -14,7 +14,9 @@ export async function load() {
    await db.set(["users", 3], { id: 3, first: "Joe", last: "Smoe", age: 45, address: { street: '789 B st.', city: 'Hayward', state: "CA", zip: 45941 } })
    db.close()
 }
+
 load()
+
 /** delete all rows from the db */
 export async function clear() {
    const db = await Deno.openKv(DBPath);

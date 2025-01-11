@@ -8,6 +8,8 @@ import {
    setRow,
 } from './kvdb.ts'
 
+import { load } from "./data/utils.ts"
+
 /** 
  * SSE stream headers 
  */
@@ -89,6 +91,7 @@ export function registerClient(req: Request): Response {
 
                /** Return all records */
                case 'GETALL': {
+                  await load()
                   const result = await getAll()
                   const to = getTreeObj(result)
                   thisResult = JSON.stringify(to)

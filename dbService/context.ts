@@ -5,8 +5,12 @@ export const DEV = true
 export const Host = "localhost"
 export const Port = 9099
 
+//TODO make the DBPath respect Deploy
+// Is running on Deploy
+const IS_DEPLOYED = !!Deno.env.get("DENO_REGION")
+
 /** path to the sqlite db file */
-export const DBPath = "./dbService/data/db.db"
+export const DBPath = (IS_DEPLOYED) ? "" : "./dbService/data/db.db"
   
 export const Options: dbOptions = {
    Schema: {
