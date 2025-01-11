@@ -11,7 +11,7 @@ import {
 //-----------------------------------------------------------
 // get internal dependencies
 //-----------------------------------------------------------
-import { DEV, corsResponse } from './dbService/context.ts'
+import { DEV, IS_DEPLOYED, corsResponse } from './dbService/context.ts'
 
 
 
@@ -62,4 +62,4 @@ Deno.serve({ port: 9099 },
 /**
  * Finally, we open the example web app in the default browser
  */
-openWebsite(`http://localhost:9099`)
+if (!IS_DEPLOYED) openWebsite(`http://localhost:9099`)
