@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+      {
+         "label": "SERVER",
+         "type": "deno",
+         "command": "run",
+         "args": [
+            "-A", 
+            "--unstable-kv", 
+            "--unstable-broadcast-channel",
+            "server.ts"],
+      },
+      {
+         "label": "CLIENT",
+         "type": "shell",
+         "command": "serve",
+         "args": ["example"],
+      }
+   ]
+}
