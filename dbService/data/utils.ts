@@ -1,8 +1,8 @@
-import { DBPath } from "../context.ts"
-
+//import { DBPath } from "../context.ts"
+//console.log("DBPath: ",DBPath)
 /** load test data set */
 export async function load() {
-   const db = await Deno.openKv(DBPath)
+   const db = await Deno.openKv()
    await db.set(["env", "cwd"], "./")
    await db.set(["env", "host"], "http://localhost")
    await db.set(["env", "port"], 9099)
@@ -19,7 +19,7 @@ load()
 
 /** delete all rows from the db */
 export async function clear() {
-   const db = await Deno.openKv(DBPath);
+   const db = await Deno.openKv();
    getAllKeys()
       .then((keys) => {
          keys.forEach( (key) => {
@@ -32,7 +32,7 @@ export async function clear() {
 /**  bulk fetch - get record collections */
 export async function getAllKeys() {
    const allKeys = []
-   const db = await Deno.openKv(DBPath);
+   const db = await Deno.openKv();
    const entries = db.list({ prefix: [] })
    for await (const entry of entries) {
       allKeys.push(entry.key)

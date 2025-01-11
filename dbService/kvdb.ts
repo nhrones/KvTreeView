@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import { DBPath } from './context.ts'
+//import { DBPath } from './context.ts'
 
 /** A cache of a KvDb-collection.    
  *  This is a consistant cache,   
@@ -24,7 +24,7 @@ export const loadCache = async () => {
  * delete a record
  */
 export async function deleteRow(key: any[]) {
-   const db = await Deno.openKv(DBPath);
+   const db = await Deno.openKv();
    const result = await db.delete(key);
    shadowCache.delete(key[1])
    fireMutationEvent(key[1], "RowDeleted")
@@ -36,7 +36,7 @@ export async function deleteRow(key: any[]) {
  * get a record
  */
 export async function getRow(key: any[], _version: string) {
-   const db = await Deno.openKv(DBPath);
+   const db = await Deno.openKv();
    const result = await db.get(key)
    db.close()
    return result
@@ -47,7 +47,7 @@ export async function getRow(key: any[], _version: string) {
  */
 export async function setRow(key: any[], value: any) {
    console.info('called setRow with key = ', key)
-   const db = await Deno.openKv(DBPath);
+   const db = await Deno.openKv();
    const result = await db.set(key, value);
    if (result.versionstamp) {
       console.log(`set shadowCache id ${key[1]} = ${JSON.stringify(value)}`)
@@ -67,7 +67,7 @@ export async function setRow(key: any[], value: any) {
 export async function getAll() {
    const fetchStart = performance.now()
    shadowCache = new Map()
-   const db = await Deno.openKv(DBPath);
+   const db = await Deno.openKv();
    const entries = db.list({ prefix: [] })
    for await (const entry of entries) {
       console.info(`key:${entry.key}. val:`, entry.value)
